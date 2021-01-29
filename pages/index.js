@@ -5,7 +5,8 @@ import Widget from '../src/components/Widget'
 import QuizLogo from '../src/components/QuizLogo'
 import QuizBackground from '../src/components/QuizBackground'
 import Footer from '../src/components/Footer'
-import GitHubCorner from '../src/components/GitHubCorner'
+import GitHubCorner from '../src/components/GitHubCorner';
+import Head from 'next/head';
 // images
 // import Img1 from '../src/assets/img-01.jpg';
 // import Img2 from '../src/assets/img-02.jpg';
@@ -29,6 +30,21 @@ export const QuizContainer = styled.div`
 export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
+      <Head>
+        <title>Spiderman | Alura Quiz</title>
+        <meta name="title" content="Spiderman | Alura Quiz" />
+        <meta name="description" content="Quiz feito com muito carinho durante a Imersão React+Nextjs da Alura. Apresentado pelo incrível time: Mario Souto, Juliana Amoasei e Paulo Silveira." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://spiderman-quiz.renatobmps.vercel.app/" />
+        <meta property="og:title" content="Spiderman | Alura Quiz" />
+        <meta property="og:description" content="Quiz feito com muito carinho durante a Imersão React+Nextjs da Alura. Apresentado pelo incrível time: Mario Souto, Juliana Amoasei e Paulo Silveira." />
+        <meta property="og:image" content="/assets/icon-rd.png" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://spiderman-quiz.renatobmps.vercel.app/" />
+        <meta property="twitter:title" content="Spiderman | Alura Quiz" />
+        <meta property="twitter:description" content="Quiz feito com muito carinho durante a Imersão React+Nextjs da Alura. Apresentado pelo incrível time: Mario Souto, Juliana Amoasei e Paulo Silveira." />
+        <meta property="twitter:image" content="/assets/icon-rd.png" />
+      </Head>
       <QuizContainer>
         <QuizLogo />
         <Widget>
@@ -49,7 +65,7 @@ export default function Home() {
         </Widget>
         <Footer />
       </QuizContainer>
-      <GitHubCorner projectUrl="https://github.com/omariosouto" />
+      <GitHubCorner projectUrl="https://github.com/renatobmps" />
     </QuizBackground>
   );
 }
