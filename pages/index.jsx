@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 import db from '../db.json';
 import Widget from '../src/components/Widget'
@@ -20,18 +20,46 @@ export const QuizContainer = styled.div`
   }
 `;
 
+const BtnTheme = styled.button`
+  max-width: 4em;
+  max-height: 4em;
+  display: flex;
+  overflow: hidden;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: .5em;
+  transition: .3s;
+  margin: 1em auto;
+  &:focus{
+    outline: none;
+  }
+  &:hover img {
+    transform: scale(1.2);
+    transition: .3s;
+  }
+`;
+
+const ImgTheme = styled.img`
+  width: 100%;
+  transition: .3s;
+`;
+
 export default function Home() {
   const [theme, setTheme] = useState('#2a327d');
   const [icon, setIcon] = useState('/assets/icon-rd.png');
+  const [iconButton, setIconButton] = useState('gray');
   const [background, setBackground] = useState(db.bg);
   const handleTheme = () => {
-    if(theme != 'black'){
+    if (theme != 'black') {
       setTheme('black');
       setIcon('/assets/icon-tr.png');
+      setIconButton('red');
       setBackground('https://images4.alphacoders.com/977/977093.jpg');
-    }else{
+    } else {
       setTheme('#2a327d');
       setIcon('/assets/icon-rd.png');
+      setIconButton('gray');
       setBackground(db.bg);
     }
   }
@@ -56,7 +84,9 @@ export default function Home() {
         <link rel="manifest" href="/manifest.json"></link>
       </Head>
       <QuizContainer>
-        <button onClick={handleTheme}>Theme</button>
+        <BtnTheme style={{ background: iconButton }} onClick={handleTheme}>
+          <ImgTheme src='/assets/icon-tr.png' alt="Mudar tema" />
+        </BtnTheme>
         <QuizLogo />
         <Widget>
           <Widget.Header>
