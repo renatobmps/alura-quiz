@@ -1,13 +1,12 @@
-
 import React, { useState } from 'react';
-import styled from 'styled-components'
-import db from '../db.json';
-import Widget from '../src/components/Widget'
-import QuizLogo from '../src/components/QuizLogo'
-import QuizBackground from '../src/components/QuizBackground'
-import Footer from '../src/components/Footer'
-import GitHubCorner from '../src/components/GitHubCorner';
+import styled from 'styled-components';
 import Head from 'next/head';
+import db from '../db.json';
+import Widget from '../src/components/Widget';
+import QuizLogo from '../src/components/QuizLogo';
+import QuizBackground from '../src/components/QuizBackground';
+import Footer from '../src/components/Footer';
+import GitHubCorner from '../src/components/GitHubCorner';
 
 export const QuizContainer = styled.div`
   width: 100%;
@@ -50,13 +49,32 @@ const ImgTheme = styled.img`
   transition: .3s;
 `;
 
+const Description = styled.p`
+  font-weight: 900 !important;
+  text-shadow: 1px 1px black;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 1em;
+`;
+
+const Submit = styled.button`
+  padding: .5em 1em;
+  background: ${db.theme.colors.contrastText};
+  width: 100%;
+  margin: 1em 0;
+  border-radius: ${db.theme.borderRadius};
+`;
+
 export default function Home() {
   const [theme, setTheme] = useState('#2a327d');
   const [icon, setIcon] = useState('/assets/icon-rd.png');
   const [iconButton, setIconButton] = useState('gray');
   const [background, setBackground] = useState(db.bg);
+  const [user, setUser] = useState('');
   const handleTheme = () => {
-    if (theme != 'black') {
+    if (theme !== 'black') {
       setTheme('black');
       setIcon('/assets/icon-tr.png');
       setIconButton('red');
@@ -67,7 +85,7 @@ export default function Home() {
       setIconButton('gray');
       setBackground(db.bg);
     }
-  }
+  };
   return (
     <QuizBackground backgroundImage={background}>
       <Head>
@@ -86,14 +104,14 @@ export default function Home() {
         <meta property="twitter:image" content="/assets/icon-rd.png" />
         <link rel="icon" href={icon} />
         <meta name="theme-color" content={theme} />
-        <link rel="manifest" href="/manifest.json"></link>
+        <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
 
       </Head>
       <QuizContainer>
         <BtnTheme style={{ background: iconButton }} onClick={handleTheme}>
-          <ImgTheme src='/assets/icon-tr.png' alt="Mudar tema" />
+          <ImgTheme src="/assets/icon-tr.png" alt="Mudar tema" />
         </BtnTheme>
         <QuizLogo />
         <Widget>
@@ -101,17 +119,31 @@ export default function Home() {
             <h1>{db.title}</h1>
           </Widget.Header>
           <Widget.Content>
-            <p>{db.description}</p>
+            <Description>{db.description}</Description>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+            }}
+            >
+              <Input
+                type="text"
+                placeholder="Seu nome?"
+                title="Entre com o seu nome para o score"
+                onChange={(e) => {
+                  setUser(e.target.value);
+                }}
+              />
+              <Submit type="submit">{`Jogar como: ${user}`}</Submit>
+            </form>
           </Widget.Content>
         </Widget>
 
-        <Widget>
+        {/* <Widget>
           <Widget.Content>
             <h1>Quizes da Galera</h1>
 
             <p>lorem ipsum dolor sit amet...</p>
           </Widget.Content>
-        </Widget>
+        </Widget> */}
         <Footer />
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/renatobmps" />
