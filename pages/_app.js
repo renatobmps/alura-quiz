@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Head from 'next/head';
 import db from '../db.json';
 
 const GlobalStyle = createGlobalStyle`
@@ -32,11 +31,39 @@ const GlobalStyle = createGlobalStyle`
 const { theme } = db;
 
 export default function App({ Component, pageProps }) {
+  const [icon, setIcon] = React.useState('/assets/icon-rd.png');
+  const [themeSet, setTheme] = React.useState('#2a327d');
   return (
     <>
+      <Head>
+        <title>Spiderman | Alura Quiz</title>
+        <meta name="title" content="Spiderman | Alura Quiz" />
+        <meta name="description" content="Quiz feito com muito carinho durante a Imersão React+Nextjs da Alura. Apresentado pelo incrível time: Mario Souto, Juliana Amoasei e Paulo Silveira." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://spiderman-quiz.renatobmps.vercel.app/" />
+        <meta property="og:title" content="Spiderman | Alura Quiz" />
+        <meta property="og:description" content="Quiz feito com muito carinho durante a Imersão React+Nextjs da Alura. Apresentado pelo incrível time: Mario Souto, Juliana Amoasei e Paulo Silveira." />
+        <meta property="og:image" content="/assets/icon-rd.png" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://spiderman-quiz.renatobmps.vercel.app/" />
+        <meta property="twitter:title" content="Spiderman | Alura Quiz" />
+        <meta property="twitter:description" content="Quiz feito com muito carinho durante a Imersão React+Nextjs da Alura. Apresentado pelo incrível time: Mario Souto, Juliana Amoasei e Paulo Silveira." />
+        <meta property="twitter:image" content="/assets/icon-rd.png" />
+        <link rel="icon" href={icon} />
+        <meta name="theme-color" content={themeSet} />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
+
+      </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Component {...pageProps} />
+        <Component
+          setIcon={setIcon}
+          theme={themeSet}
+          setTheme={setTheme}
+          {...pageProps}
+        />
       </ThemeProvider>
     </>
   );

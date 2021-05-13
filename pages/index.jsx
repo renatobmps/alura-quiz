@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Head from 'next/head';
+// import { Link } from 'react-router-dom';
 import db from '../db.json';
 import Widget from '../src/components/Widget';
 import QuizLogo from '../src/components/QuizLogo';
@@ -59,17 +59,18 @@ const Input = styled.input`
   padding: 1em;
 `;
 
-const Submit = styled.button`
+const Submit = styled.a`
   padding: .5em 1em;
   background: ${db.theme.colors.contrastText};
   width: 100%;
   margin: 1em 0;
   border-radius: ${db.theme.borderRadius};
+  text-decoration: none;
+  display: block;
+  width: fit-content;
 `;
 
-export default function Home() {
-  const [theme, setTheme] = useState('#2a327d');
-  const [icon, setIcon] = useState('/assets/icon-rd.png');
+export default function Home({ setIcon, theme, setTheme }) {
   const [iconButton, setIconButton] = useState('gray');
   const [background, setBackground] = useState(db.bg);
   const [user, setUser] = useState('');
@@ -88,27 +89,6 @@ export default function Home() {
   };
   return (
     <QuizBackground backgroundImage={background}>
-      <Head>
-        <title>Spiderman | Alura Quiz</title>
-        <meta name="title" content="Spiderman | Alura Quiz" />
-        <meta name="description" content="Quiz feito com muito carinho durante a Imersão React+Nextjs da Alura. Apresentado pelo incrível time: Mario Souto, Juliana Amoasei e Paulo Silveira." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://spiderman-quiz.renatobmps.vercel.app/" />
-        <meta property="og:title" content="Spiderman | Alura Quiz" />
-        <meta property="og:description" content="Quiz feito com muito carinho durante a Imersão React+Nextjs da Alura. Apresentado pelo incrível time: Mario Souto, Juliana Amoasei e Paulo Silveira." />
-        <meta property="og:image" content="/assets/icon-rd.png" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://spiderman-quiz.renatobmps.vercel.app/" />
-        <meta property="twitter:title" content="Spiderman | Alura Quiz" />
-        <meta property="twitter:description" content="Quiz feito com muito carinho durante a Imersão React+Nextjs da Alura. Apresentado pelo incrível time: Mario Souto, Juliana Amoasei e Paulo Silveira." />
-        <meta property="twitter:image" content="/assets/icon-rd.png" />
-        <link rel="icon" href={icon} />
-        <meta name="theme-color" content={theme} />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
-
-      </Head>
       <QuizContainer>
         <BtnTheme style={{ background: iconButton }} onClick={handleTheme}>
           <ImgTheme src="/assets/icon-tr.png" alt="Mudar tema" />
@@ -132,18 +112,18 @@ export default function Home() {
                   setUser(e.target.value);
                 }}
               />
-              <Submit type="submit">{`Jogar como: ${user}`}</Submit>
+              <Submit href={`quiz?n=${user}`} type="submit">{`Jogar como: ${user}`}</Submit>
             </form>
           </Widget.Content>
         </Widget>
 
-        {/* <Widget>
+        <Widget>
           <Widget.Content>
             <h1>Quizes da Galera</h1>
 
             <p>lorem ipsum dolor sit amet...</p>
           </Widget.Content>
-        </Widget> */}
+        </Widget>
         <Footer />
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/renatobmps" />

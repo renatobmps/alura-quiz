@@ -38,6 +38,14 @@
       "wrong": "#fb6158",
       "success": "#00c689"
     },
+    "colorsBlack": {
+      "primary": "#2a327d",
+      "secondary": "#29b6f6",
+      "mainBg": "#171B35",
+      "contrastText": "#f9ac38",
+      "wrong": "#fb6158",
+      "success": "#00c689"
+    },
     "borderRadius": "4px"
   }
 }

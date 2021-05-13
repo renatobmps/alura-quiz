@@ -1,20 +1,20 @@
 {
-    "short_name": "Spiderman",
-    "name": "Spiderman | Alura Quiz",
-    "icons": [
-      {
-        "src": "assets/icon-rd.png",
-        "sizes": "64x64 32x32 24x24 16x16",
-        "type": "image/x-icon"
-      },
-      {
-        "src": "assets/icon-rd.png",
-        "type": "image/png",
-        "sizes": "180x180"
-      }
-    ],
-    "start_url": ".",
-    "display": "standalone",
-    "theme_color": "#2a327d",
-    "background_color": "#fb6158"
-  }
+  "short_name": "Spiderman",
+  "name": "Spiderman | Alura Quiz",
+  "icons": [
+    {
+      "src": "assets/icon-rd.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "assets/icon-rd.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ],
+  "start_url": ".",
+  "display": "fullscreen",
+  "theme_color": "#1c54b2",
+  "background_color": "#aa2e25"
+}
